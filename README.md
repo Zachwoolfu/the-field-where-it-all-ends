@@ -1,2 +1,5 @@
 # the-field-where-it-all-ends
-A game
+After downloading
+Access SKIBIDITOILET (Folder) and click Main.Py, then run 
+(unfinished)
+Current: Mar 31 2026
