@@ -10,6 +10,9 @@ class Player:
     def Unit_equip(self, amount):
         self.Health -= amount
 
+    def Damage_Player(self, amount):
+        self.Health -= amount
+        
     def IsDied(self):
         if self.Health <= 0:
             return True
