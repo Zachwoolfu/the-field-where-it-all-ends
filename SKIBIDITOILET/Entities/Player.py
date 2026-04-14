@@ -7,9 +7,6 @@ class Player:
         self.MaxHealth = 1
         self.Health = 1 ## Howmuch units have fallen!
 
-    def Unit_equip(self, amount):
-        self.Health -= amount
-
     def Damage_Player(self, amount):
         self.Health -= amount
         
