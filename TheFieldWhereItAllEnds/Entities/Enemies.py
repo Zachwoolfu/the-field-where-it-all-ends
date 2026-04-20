@@ -15,11 +15,17 @@ class Enemy:
             self.Strength = 2
             self.MaxHealth = 3
             self.Health = 3
-        
 
-
+    def Heal_Enemy(self,Amunt):
+        if Self.MaxHealth > Self.Health:
+            self.Health += amount
+        else:
+            Self.Health = Self.MaxHealth
     def Damage_Enemy(self, amount):
-        self.Health -= amount
+        if Self.MaxHealth > Self.Health:
+            self.Health -= amount
+        else:
+            Self.Health = Self.MaxHealth
         
     def IsDied(self):
         if self.Health <= 0:
