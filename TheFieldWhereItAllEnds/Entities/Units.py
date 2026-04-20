@@ -28,13 +28,13 @@ class Units:
         if self.Health > 0:
             self.Health -= Amount
 
-    def Action(Self):
+    def Action(Self,Enemy1,Enemy2,Enemy3):
         if Self.Stamina > 0:
             Timed_Text("Select an action!",0.03,True,False)
             print(Self.Name," ", end="")
             print("(",ClassDescript(Self),")",sep="")
             ChoseAbility = Class_Ability_Description(Self)
-            Class_Ability_Cast(Self,ChoseAbility)
+            Class_Ability_Cast(Self,ChoseAbility,Enemy1,Enemy2,Enemy3)
     
 
             
