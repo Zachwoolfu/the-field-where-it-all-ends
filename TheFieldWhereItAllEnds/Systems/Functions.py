@@ -22,6 +22,15 @@ def Randomize_Enemies():
     import random
     return random.randint(1,2)
 
+def Choose_Enemy(Enemy1,Enemy2,Enemy3):
+    Timed_Text('Choose an enemy',0.03,True,True)
+    if Enemy1 == None:    
+        print(Enemy1.Name)
+    if Enemy2 == None:
+    if Enemy3 == None:
+    
+    
+
 def Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemy1,Enemy2,Enemy3):
     while True:
         Plr_Dead = Local_Player.IsDied()
@@ -40,15 +49,15 @@ def Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemy1,Enemy2,Enemy3):
 
         Timed_Text("Enemies turn!",0.03,True,True)
         if Enemy1 is not None:
-            Enemy1.Action()
+            Enemy1.Action(Ally1,Ally2,Ally3,Ally4)
             if Enemy1.IsDied() == true:
                 Enemy1 = None
         if Enemy2 is not None:
-            Enemy2.Action()
+            Enemy2.Action(Ally1,Ally2,Ally3,Ally4)
             if Enemy2.IsDied() == true:
                 Enemy2 = None
         if Enemy3 is not None:
-            Enemy3.Action()
+            Enemy3.Action(Ally1,Ally2,Ally3,Ally4)
             if Enemy3.IsDied() == true:
                 Enemy3 = None
         
