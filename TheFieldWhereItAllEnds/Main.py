@@ -39,7 +39,9 @@ def Starting_Dialogue():
         try:
             Timed_Text('Input Ally1 Name:',0.03,False,False)
             Given_Name = input(" ")
-            Ally1 = Units(Given_Name,1)
+            Timed_Text('Give Class: ',0.03,False,False)
+            Given_Class = int(input(" "))
+            Ally1 = Units(Given_Name,Given_Class)
             break
         except:
             print("please place in a valid name.") 
