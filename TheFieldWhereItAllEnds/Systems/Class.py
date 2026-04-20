@@ -31,14 +31,16 @@ def ClassDescript(Self):
             ClassType = "Unwritten melodies"
         return ClassType
 
-def Class_Ability_Cast(ClassType,AbilityType):
+def Class_Ability_Cast(Self,AbilityType):
+    ClassType = ClassDescript(Self.Class)
     if ClassType == "Mage":
         if AbilityType == 1:
             print("MAGICM IZZLE PEW PEW!")
         if AbilityType == 2:
             print("WARPING TO THE ENEMY AND BACK!")
        
-def Class_Ability_Description(ClassType):
+def Class_Ability_Description(Self):
+    ClassType = ClassDescript(Self.Class)
     if ClassType == "Mage":
         print("1: Magic Missile: Deal 1 Magic damage to a close - medium range target")
         print("2: Warp: Teleport instantly to dodge the next damage taken.")
@@ -89,6 +91,7 @@ def Class_Ability_Description(ClassType):
     while True:
         try:
             Given_Input = int(input(" "))
+            
             return Given_Input
         except TypeError:
             Timed_Text("Something sent wrong, please try again! ",0.03,True,True)
