@@ -41,8 +41,14 @@ def Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemy1,Enemy2,Enemy3):
         Timed_Text("Enemies turn!",0.03,True,True)
         if Enemy1 is not None:
             Enemy1.Action()
+            if Enemy1.IsDied() == true:
+                Enemy1 = None
         if Enemy2 is not None:
             Enemy2.Action()
+            if Enemy2.IsDied() == true:
+                Enemy2 = None
         if Enemy3 is not None:
             Enemy3.Action()
+            if Enemy3.IsDied() == true:
+                Enemy3 = None
         
