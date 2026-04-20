@@ -9,6 +9,7 @@ class Units:
         self.Health = 5
         self.Strength = 1
         self.Defence = 0 ## 0%
+        self.Dodge = 0 ### 0%
         self.Stamina = 2 ## Base Stamina AlWAYS!!!
         self.Distance = 3 ## ON ACTION!
         self.Relationship_Status = 1  
