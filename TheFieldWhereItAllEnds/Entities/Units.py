@@ -7,7 +7,7 @@ class Units:
         self.Name = Name
         self.MaxHealth = 5
         self.Health = 5
-        Self.Strength = 1
+        self.Strength = 1
         self.Defence = 0 ## 0%
         self.Stamina = 2 ## Base Stamina AlWAYS!!!
         self.Distance = 3 ## ON ACTION!
