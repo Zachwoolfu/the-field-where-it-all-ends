@@ -1,6 +1,7 @@
 class Enemy:
     def __init__(self,Type):
         self.Type = Type
+        Self.Name = "Enemy"
         self.Strength = 1
         self.MaxHealth = 1
         self.Stamina = 1
@@ -8,10 +9,12 @@ class Enemy:
         self.Magic_Defense = 0
         self.Physical_Defense = 0
         if Type == 1:
+            Self.Name = "Enemy1"
             self.Strength = 1
             self.MaxHealth = 2
             self.Health = 2
         elif Type == 2:
+            Self.Name = "Enemy2"
             self.Strength = 2
             self.MaxHealth = 3
             self.Health = 3
