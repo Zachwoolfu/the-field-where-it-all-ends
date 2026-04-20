@@ -89,7 +89,7 @@ def Class_Ability_Description(ClassType):
     while True:
         try:
             Given_Input = int(input(" "))
-            return Class_Ability_Cast(ClassType,Given_Input)
+            return Given_Input
         except TypeError:
             Timed_Text("Something sent wrong, please try again! ",0.03,True,True)
     
