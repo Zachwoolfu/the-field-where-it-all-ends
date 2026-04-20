@@ -30,13 +30,13 @@ def Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemy1,Enemy2,Enemy3):
         
         Selected_Unit = Local_Player.SelectUnit(Ally1,Ally2,Ally3,Ally4)
         if Selected_Unit == 1:
-            Ally1.Action()
+            Ally1.Action(Enemy1,Enemy2,Enemy3)
         if Selected_Unit == 2:
-            Ally2.Action()
+            Ally2.Action(Enemy1,Enemy2,Enemy3)
         if Selected_Unit == 3:
-            Ally3.Action()
+            Ally3.Action(Enemy1,Enemy2,Enemy3)
         if Selected_Unit == 4:
-            Ally4.Action()
+            Ally4.Action(Enemy1,Enemy2,Enemy3)
 
         Timed_Text("Enemies turn!",0.03,True,True)
         if Enemy1 is not None:
