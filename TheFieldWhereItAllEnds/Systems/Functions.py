@@ -23,12 +23,22 @@ def Randomize_Enemies():
     return random.randint(1,2)
 
 def Choose_Enemy(Enemy1,Enemy2,Enemy3):
-    Timed_Text('Choose an enemy',0.03,True,True)
-    if Enemy1 == None:    
-        print(Enemy1.Name)
-    if Enemy2 == None:
-    if Enemy3 == None:
-    
+   
+    while True:
+        try:
+            Timed_Text('Choose an enemy',0.03,True,True)
+            if Enemy1 == None:    
+                print("1:"..Enemy1.Name)
+            if Enemy2 == None:
+                print("2:"..Enemy2.Name)
+            if Enemy3 == None:
+                print("3:"..Enemy3.Name)
+            print("Input:")
+            Choice = int(input("Input"))
+            return Choice
+        except:
+            Timed_Text('Please choose a number!!!',0.03,True,True)
+    return 
     
 
 def Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemy1,Enemy2,Enemy3):
