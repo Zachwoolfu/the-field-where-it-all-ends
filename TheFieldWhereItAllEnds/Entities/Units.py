@@ -32,7 +32,7 @@ class Units:
         if Self.Stamina > 0:
             Timed_Text("Select an action!",0.03,True,False)
             print(Self.Name," ", end="")
-            print("(",Self.ClassDescript(),")",sep="")
+            print("(",ClassDescript(Self),")",sep="")
             ChoseAbility = Class_Ability_Description(Self)
             Class_Ability_Cast(Self,ChoseAbility)
     
