@@ -40,7 +40,7 @@ def Class_Ability_Cast(Self,AbilityType):
             print("WARPING TO THE ENEMY AND BACK!")
        
 def Class_Ability_Description(Self):
-    ClassType = ClassDescript(Self.Class)
+    ClassType = ClassDescript(Self)
     if ClassType == "Mage":
         print("1: Magic Missile: Deal 1 Magic damage to a close - medium range target")
         print("2: Warp: Teleport instantly to dodge the next damage taken.")
