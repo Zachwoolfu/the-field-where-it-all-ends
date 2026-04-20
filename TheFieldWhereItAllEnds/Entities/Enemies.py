@@ -3,6 +3,7 @@ class Enemy:
         self.Type = Type
         self.Strength = 1
         self.MaxHealth = 1
+        self.Stamina = 1
         self.Health = 1 ## Howmuch units have fallen!
         self.Magic_Defense = 0
         self.Physical_Defense = 0
