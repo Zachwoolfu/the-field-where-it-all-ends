@@ -33,8 +33,8 @@ class Units:
             Timed_Text("Select an action!",0.03,True,False)
             print(Self.Name," ", end="")
             print("(",Self.ClassDescript(),")",sep="")
-            ChoseAbility = Class_Ability_Description(ClassDescript(Self.Class))
-            Class_Ability_Cast(ClassDescript(Self.Class),ChoseAbility)
+            ChoseAbility = Class_Ability_Description(Self)
+            Class_Ability_Cast(Self,ChoseAbility)
     
 
             
