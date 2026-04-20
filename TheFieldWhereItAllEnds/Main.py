@@ -39,7 +39,11 @@ def Starting_Dialogue():
         try:
             Timed_Text('Input Ally1 Name:',0.03,False,False)
             Given_Name = input(" ")
-            Timed_Text('Give Class: ',0.03,False,False)
+            System_Clear()
+            print("1: Mage")
+            print("2: Warrior")
+            print("3: Hunter")
+            
             Given_Class = int(input(" "))
             Ally1 = Units(Given_Name,Given_Class)
             break
@@ -49,7 +53,7 @@ def Starting_Dialogue():
     Enemies1 = Enemy(Randomize_Enemies())
     Enemies2 = Enemy(Randomize_Enemies())
     Enemies3 = Enemy(Randomize_Enemies())
-    
+     Timed_Text('Enemies randomized... You ready??!',0.03,True,True)    
     Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemies1,Enemies2,Enemies3)
 
 Starting_Dialogue()
