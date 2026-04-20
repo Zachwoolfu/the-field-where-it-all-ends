@@ -34,7 +34,7 @@ class Units:
             print(Self.Name," ", end="")
             print("(",Self.ClassDescript(),")",sep="")
             ChoseAbility = Class_Ability_Description(ClassDescript(Self.Class))
-            Class_Ability_Cast(ChoseAbility)
+            Class_Ability_Cast(ClassDescript(Self.Class),ChoseAbility)
     
 
             
