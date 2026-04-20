@@ -1,7 +1,7 @@
 from Systems.Functions import Timed_Text
 from Systems.Class import ClassDescript
 from Systems.Class import Class_Ability_Description
-
+from Systems.Class import Class_Ability_Cast
 class Units:
     def __init__(self,Name,Class):
         self.Name = Name
@@ -33,7 +33,8 @@ class Units:
             Timed_Text("Select an action!",0.03,True,False)
             print(Self.Name," ", end="")
             print("(",Self.ClassDescript(),")",sep="")
-            Class_Ability_Description(ClassDescript(Self))
+            ChoseAbility = Class_Ability_Description(ClassDescript(Self.Class))
+            Class_Ability_Cast(ChoseAbility)
     
 
             
