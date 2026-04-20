@@ -10,6 +10,7 @@ class Units:
         self.Strength = 1
         self.Defence = 0 ## 0%
         self.Dodge = 0 ### 0%
+        self.Dash = 0 ### 1 = if hit once it will dodge!
         self.Stamina = 2 ## Base Stamina AlWAYS!!!
         self.Distance = 3 ## ON ACTION!
         self.Relationship_Status = 1  
