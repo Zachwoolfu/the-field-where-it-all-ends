@@ -32,7 +32,7 @@ def ClassDescript(Self):
         return ClassType
 
 def Class_Ability_Cast(Self,AbilityType):
-    ClassType = ClassDescript(Self.Class)
+    ClassType = ClassDescript(Self)
     if ClassType == "Mage":
         if AbilityType == 1:
             print("MAGICM IZZLE PEW PEW!")
