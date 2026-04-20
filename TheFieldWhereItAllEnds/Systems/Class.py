@@ -36,8 +36,8 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
     ClassType = ClassDescript(Self)
     if ClassType == "Mage":
         if AbilityType == 1:
-            print("MAGICM IZZLE PEW PEW!")
-       
+            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+            print(Self.Name.." Fires a quick missile at "..Enemy_Choice)
         if AbilityType == 2:
             print("WARPING TO THE ENEMY AND BACK!")
        
