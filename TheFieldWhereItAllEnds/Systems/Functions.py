@@ -23,7 +23,6 @@ def Randomize_Enemies():
     return random.randint(1,2)
 
 def Choose_Enemy(Enemy1,Enemy2,Enemy3):
-   
     while True:
         try:
             Timed_Text('Choose an enemy',0.03,True,True)
