@@ -41,6 +41,8 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
             Enemy_Choice.Damage_Enemy(Self.Strength)
         if AbilityType == 2:
             print(Self.Name," magic tingles, preparing a warp...")
+            Self.Dash += 1
+       
             
        
 def Class_Ability_Description(Self):
