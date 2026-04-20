@@ -21,7 +21,9 @@ Ally2 = None
 Ally3 = None
 Ally4 = None
 
-
+Enemies1 = None
+Enemies2 = None
+Enemies3 = None
 while True:
     try:
         Given_Name = input("Input Name:")
@@ -51,8 +53,8 @@ def Starting_Dialogue():
             print("please place in a valid name.") 
 
     Enemies1 = Enemy(Randomize_Enemies())
-    Enemies2 = Enemy(Randomize_Enemies())
-    Enemies3 = Enemy(Randomize_Enemies())
+    #Enemies2 = Enemy(Randomize_Enemies())
+    #Enemies3 = Enemy(Randomize_Enemies())
     Timed_Text('Will add a tutorial soon; play around and see.....................',0.03,True,True)    
     Timed_Text('Enemies randomized... You ready??!',0.03,True,True)    
     Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemies1,Enemies2,Enemies3)
