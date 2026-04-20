@@ -31,11 +31,12 @@ def ClassDescript(Self):
             ClassType = "Unwritten melodies"
         return ClassType
 
-def Class_Ability_Cast(Self,AbilityType):
+def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
     ClassType = ClassDescript(Self)
     if ClassType == "Mage":
         if AbilityType == 1:
             print("MAGICM IZZLE PEW PEW!")
+       
         if AbilityType == 2:
             print("WARPING TO THE ENEMY AND BACK!")
        
