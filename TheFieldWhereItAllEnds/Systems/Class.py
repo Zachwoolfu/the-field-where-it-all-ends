@@ -40,7 +40,8 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
             print(Self.Name," Fires a quick missile at ",Enemy_Choice.Name)
             Enemy_Choice.Damage_Enemy(Self.Strength)
         if AbilityType == 2:
-            print("WARPING TO THE ENEMY AND BACK!")
+            print(Self.Name," magic tingles, preparing a warp...")
+            
        
 def Class_Ability_Description(Self):
     ClassType = ClassDescript(Self)
