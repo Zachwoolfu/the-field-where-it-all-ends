@@ -16,23 +16,17 @@ class Player:
 
     def SelectUnit(self,Ally1, Ally2,Ally3,Ally4):
         count = 0
-        Timed_Text("Your turn!",0.03,True,True)
+        print("Your turn!")
         while True:
             try:
                 Timed_Text("Select A unit! (Or type '5' to finish) ",0.03,True,False)
-                if Ally1 is not None:
-                    count += 1
-                    print("1:",Ally1.Name,end=" ")
-                    print("(",Ally1.ClassDescript(),")", sep="")
-                if Ally2 is not None:
-                    count += 1
-                    print("2:",Ally2.Name)
-                if Ally3 is not None:
-                    count += 1
-                    print("3:",Ally3.Name)
-                if Ally4 is not None:
-                    count += 1
-                    print("4:",Ally4.Name)
+                Allies = [Ally1, Ally2, Ally3, Ally4]
+
+                for ally in Allies:
+                    if ally is not None:
+                        count += 1
+                        print(f"{count}: {ally.Name} | HP: {ally.Health} | {ally.ClassDescript()}")
+             
                 print("Input: ",end="")
                 Given_Input = int(input(" "))
                 if 0 < Given_Input <= count:
