@@ -55,8 +55,9 @@ def Starting_Dialogue():
     Enemies1 = Enemy(Randomize_Enemies())
     #Enemies2 = Enemy(Randomize_Enemies())
     #Enemies3 = Enemy(Randomize_Enemies())
-    Timed_Text('Will add a tutorial soon; play around and see.....................',0.03,True,True)    
+    Timed_Text('Will add a tutorial soon; play around!',0.03,True,True)    
     Timed_Text('Enemies randomized... You ready??!',0.03,True,True)    
-    Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemies1,Enemies2,Enemies3)
-
+    Completion = Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemies1,Enemies2,Enemies3)
+    if Completion == True:
+        Timed_Text('Congratulations you win!',0.03,True,True)
 Starting_Dialogue()
