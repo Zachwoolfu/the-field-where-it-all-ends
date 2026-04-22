@@ -37,10 +37,11 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
     if ClassType == "Mage":
         if AbilityType == 1:
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
-            print(Self.Name," Fires a quick missile at ",Enemy_Choice.Name)
+            Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
+    f"Dealing -{Self.Strength} Magic damage",0.03,True,True)
             Enemy_Choice.Damage_Enemy(Self.Strength)
         if AbilityType == 2:
-            print(Self.Name," magic tingles, preparing a warp...")
+            Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
             Self.Dash += 1
        
             
