@@ -37,13 +37,28 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
     if ClassType == "Mage":
         if AbilityType == 1:
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+            Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
+            if Damage_Calc < 0:
+                Damage_Calc = 0
             Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
-    f"Dealing -{Self.Strength} Magic damage",0.03,True,True)
-            Enemy_Choice.Damage_Enemy(Self.Strength)
+    f"Dealing -{Damage_Calc} Magic damage",0.03,True,True)
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
         if AbilityType == 2:
             Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
             Self.Dash += 1
-       
+    if ClassType == "Warrior":
+        if AbilityType == 1:
+            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+            if Damage_Calc < 0:
+                Damage_Calc = 0
+            Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
+        if AbilityType == 2:
+            Timed_Text(f"{Self.Name} raises their shield, preparing to block...",0.03,True,True)
+            Self.Defence += 2
+            Self.Applied_Status["WarriorAbility2"] = 0
+
             
        
 def Class_Ability_Description(Self):
@@ -53,7 +68,7 @@ def Class_Ability_Description(Self):
         print("2: Warp: Teleport instantly to dodge the next damage taken.")
     if ClassType == "Warrior":
         print("1: Slash: Deal 1 Physical Damage to a close range target")
-        print("2: Block: Gain 50% damage reduction for this round")      
+        print("2: Block: Gain - 2 damage reduction for this round")      
     if ClassType == "Hunter":
         print("1: Slash: Deal 1 Physical Damage ot a close range target")      
     if ClassType == "Deduction Of Infinity":
@@ -100,7 +115,7 @@ def Class_Ability_Description(Self):
             Given_Input = int(input(" "))
             
             return Given_Input
-        except TypeError:
+        except:
             Timed_Text("Something sent wrong, please try again! ",0.03,True,True)
     
     
