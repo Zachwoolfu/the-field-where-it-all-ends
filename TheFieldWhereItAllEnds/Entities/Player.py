@@ -9,7 +9,7 @@ class Player:
 
     def Damage_Player(self, amount):
         self.Health -= amount
-        
+    
     def IsDied(self):
         if self.Health <= 0:
             return True
@@ -35,6 +35,5 @@ class Player:
                     return "end"
                 else:
                     Timed_Text("Selection invalid, please inpute an available number! ",0.03,True,True)
-            except IndexError:
+            except ValueError:
                 Timed_Text("Something sent wrong, please try again! ",0.03,True,True)
-                print(IndexError)
