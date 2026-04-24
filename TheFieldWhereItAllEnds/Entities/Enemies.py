@@ -28,7 +28,7 @@ class Enemy:
         else:
             self.Health = self.MaxHealth
     def Damage_Enemy(self, amount):
-        if self.MaxHealth > self.Health:
+        if self.MaxHealth >= self.Health:
             self.Health -= amount
         else:
             self.Health = self.MaxHealth
