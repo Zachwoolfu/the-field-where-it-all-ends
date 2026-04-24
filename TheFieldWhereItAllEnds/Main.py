@@ -60,4 +60,6 @@ def Starting_Dialogue():
     Completion = Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemies1,Enemies2,Enemies3)
     if Completion == True:
         Timed_Text('Congratulations you win!',0.03,True,True)
+    else:
+        Timed_Text('You lose... Better luck next time!',0.03,True,True)
 Starting_Dialogue()
