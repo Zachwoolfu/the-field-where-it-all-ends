@@ -9,8 +9,8 @@ class Enemy:
         self.MaxHealth = 1
         self.Stamina = 1
         self.Health = 1 ## Howmuch units have fallen!
-        self.Magic_Defense = 0
-        self.Physical_Defense = 0
+        self.Magic_Defense = 0 ## - 1
+        self.Physical_Defense = 0 ## - 1
         if Type == 1:
             self.Name = "Enemy1"
             self.Strength = 1
@@ -63,6 +63,20 @@ class Enemy:
             if Ally4 is not None:
                 ChosenAlly = Ally4
         
-        Timed_Text(f"{self.Name} Attacks {ChosenAlly.Name} for -{self.Strength} damage!",0.03,True,True)
-        ChosenAlly.Take_Damage(self.Strength)
-        
+        Timed_Text(f"{self.Name} is targetting {ChosenAlly.Name}",0.03,True,True)
+        if ChosenAlly.Dash > 0:
+            ChosenAlly.Success_Dash()
+        else:
+            RandomNum = random.randint(1,100)
+            if ChosenAlly.Dodge >= RandomNum:
+                Timed_Text(f"{ChosenAlly.Name} dodged the attack!",0.03,True,True)
+            else: 
+                Damage_Calc = self.Strength - ChosenAlly.Defence   
+                if Damage_Calc < 0:
+                    Damage_Calc = 0
+                if Damage_Calc == 0:
+                    Timed_Text(f"{ChosenAlly.Name} mitigates the damage!",0.03,True,True)
+                else:
+                    Timed_Text(f"{self.Name} Attacks {ChosenAlly.Name} for -{Damage_Calc} damage!",0.03,True,True)
+                    ChosenAlly.Take_Damage(Damage_Calc)
+            
