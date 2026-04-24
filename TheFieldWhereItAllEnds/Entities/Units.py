@@ -8,8 +8,8 @@ class Units:
         self.MaxHealth = 5
         self.Health = 5
         self.Strength = 1
-        self.Defence = 0 ## 0%
-        self.Dodge = 0 ### 0%
+        self.Defence = 0 ## -0
+        self.Dodge = 10 ### 0%
         self.Dash = 0 ### 1 = if hit once it will dodge!
         self.Stamina = 2 ## Base Stamina AlWAYS!!!
         self.Distance = 3 ## ON ACTION!
@@ -17,11 +17,18 @@ class Units:
         self.Relationshp_Level = 1
         self.Class = Class
         self.Equipement = 0
+        self.Applied_Status = {}
 
     def ClassDescript(Self):
         x = ClassDescript(Self)
         return x
-        
+    
+    def Status_Ending(Self):
+        if "WarriorAbility2" in Self.Applied_Status:
+            if Self.Applied_Status["WarriorAbility2"] == 0:
+                del Self.Applied_Status["WarriorAbility2"]
+                Self.Defence -= 2
+                
 
     def IsDied(self):
         if self.Health <= 0:
@@ -31,6 +38,10 @@ class Units:
         if self.Health > 0:
             self.Health -= Amount
 
+    def Success_Dash(self):
+        self.Dash -= 1
+        Timed_Text("Missed damage!",0.03,True,True)
+
     def Action(Self,Enemy1,Enemy2,Enemy3):
         if Self.Stamina > 0:
             Timed_Text("Select an action!",0.03,True,False)
@@ -38,7 +49,6 @@ class Units:
             print("(",ClassDescript(Self),")",sep="")
             ChoseAbility = Class_Ability_Description(Self)
             Class_Ability_Cast(Self,ChoseAbility,Enemy1,Enemy2,Enemy3)
-    
 
             
             
