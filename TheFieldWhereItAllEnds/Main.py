@@ -53,7 +53,7 @@ def Starting_Dialogue():
             print("please place in a valid name.") 
 
     Enemies1 = Enemy(Randomize_Enemies())
-    #Enemies2 = Enemy(Randomize_Enemies())
+    Enemies2 = Enemy(Randomize_Enemies())
     #Enemies3 = Enemy(Randomize_Enemies())
     Timed_Text('Will add a tutorial soon; play around!',0.03,True,True)    
     Timed_Text('Enemies randomized... You ready??!',0.03,True,True)    
