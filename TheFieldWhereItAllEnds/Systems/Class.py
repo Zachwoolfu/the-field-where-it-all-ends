@@ -38,13 +38,17 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
         if AbilityType == 1:
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
             Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
-            if Damage_Calc < 0:
-               Damage_Calc = 0
-               Timed_Text("Damage Mitigated!",0.03,True,True) 
-            else:
-                 Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
+            RandomNum = random.randint(1,100)
+            if Enemy_Choice.Dodge >= RandomNum:
+            	if Damage_Calc < 0:
+               	Damage_Calc = 0
+               	Timed_Text("Damage Mitigated!",0.03,True,True) 
+            	else:
+                 	Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
     f"Dealing -{Damage_Calc} Magic damage",0.03,True,True)
-            Enemy_Choice.Damage_Enemy(Damage_Calc)
+            		Enemy_Choice.Damage_Enemy(Damage_Calc)
+            else:
+              Enemy_Choice.SuccDodge()
         if AbilityType == 2:
             Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
             Self.Dash += 1
