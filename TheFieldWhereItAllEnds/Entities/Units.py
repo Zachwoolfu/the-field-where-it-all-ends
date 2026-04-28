@@ -10,7 +10,7 @@ class Units:
         self.Strength = 1
         self.Defence = 0 ## -0
         self.Dodge = 10 ### 0%
-        self.Dash = 0 ### 1 = if hit once it will dodge!
+        self.Dash = 0 ### 1 = if hit once it will dodge!.
         self.Distance = 3 ## ON ACTION!
         self.Relationship_Status = 1  
         self.Relationshp_Level = 1
@@ -47,12 +47,12 @@ class Units:
         Timed_Text("Missed damage!",0.03,True,True)
 
     def Action(Self,Enemy1,Enemy2,Enemy3):
-        if Self.Stamina > 0:
-            Timed_Text("Select an action!",0.03,True,False)
-            print(Self.Name," ", end="")
-            print("(",ClassDescript(Self),")",sep="")
-            ChoseAbility = Class_Ability_Description(Self)
-            Class_Ability_Cast(Self,ChoseAbility,Enemy1,Enemy2,Enemy3)
+       
+    	Timed_Text("Select an action!",0.03,True,False)
+        print(Self.Name," ", end="")
+        print("(",ClassDescript(Self),")",sep="")
+        ChoseAbility = Class_Ability_Description(Self)
+        Class_Ability_Cast(Self,ChoseAbility,Enemy1,Enemy2,Enemy3)
 
             
             
