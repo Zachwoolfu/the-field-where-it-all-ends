@@ -1,82 +1,39 @@
-from Systems.Functions import Timed_Text
-import random
-
 class Enemy:
     def __init__(self,Type):
         self.Type = Type
-        self.Name = "Enemy"
+        Self.Name = "Enemy"
         self.Strength = 1
         self.MaxHealth = 1
-        self.Stamina = 1
+        self.Dodge = 10 ### 10% dodge chance
+        self.Dash = 0 # 1 = it will block.Dash 1 Damage.
         self.Health = 1 ## Howmuch units have fallen!
-        self.Magic_Defense = 0 ## - 1
-        self.Physical_Defense = 0 ## - 1
+        self.Dash = 0 ## 1 count Used on hit
+        self.Dodge = 0 ## 0%
+        
+        self.Magic_Defense = 0
+        self.Physical_Defense = 0
         if Type == 1:
-            self.Name = "Enemy1"
+            Self.Name = "Enemy1"
             self.Strength = 1
             self.MaxHealth = 2
             self.Health = 2
         elif Type == 2:
-            self.Name = "Enemy2"
+            Self.Name = "Enemy2"
             self.Strength = 2
             self.MaxHealth = 3
             self.Health = 3
 
-    def Heal_Enemy(self,amount):
-        if self.MaxHealth > self.Health:
+    def Heal_Enemy(self,Amunt):
+        if Self.MaxHealth > Self.Health:
             self.Health += amount
         else:
-            self.Health = self.MaxHealth
+            Self.Health = Self.MaxHealth
     def Damage_Enemy(self, amount):
-        if self.MaxHealth >= self.Health:
+        if Self.MaxHealth > Self.Health:
             self.Health -= amount
         else:
-            self.Health = self.MaxHealth
+            Self.Health = Self.MaxHealth
         
     def IsDied(self):
         if self.Health <= 0:
             return True
-
-    def Action(self,Ally1,Ally2,Ally3,Ally4):
-        print(f"{self.Name} Attacks!")
-        count = 0
-        if Ally1 is not None:
-            count += 1
-        if Ally2 is not None:
-            count += 1
-        if Ally3 is not None:
-            count += 1
-        if Ally4 is not None:
-            count += 1
-        Randomized = random.randint(1,count)
-        ChosenAlly = None
-        if Randomized == 1:
-            if Ally1 is not None:
-                ChosenAlly = Ally1
-        if Randomized == 2:
-            if Ally2 is not None:
-                ChosenAlly = Ally2
-        if Randomized == 3:
-            if Ally3 is not None:
-                ChosenAlly = Ally3
-        if Randomized == 4:
-            if Ally4 is not None:
-                ChosenAlly = Ally4
-        
-        Timed_Text(f"{self.Name} is targetting {ChosenAlly.Name}",0.03,True,True)
-        if ChosenAlly.Dash > 0:
-            ChosenAlly.Success_Dash()
-        else:
-            RandomNum = random.randint(1,100)
-            if ChosenAlly.Dodge >= RandomNum:
-                Timed_Text(f"{ChosenAlly.Name} dodged the attack!",0.03,True,True)
-            else: 
-                Damage_Calc = self.Strength - ChosenAlly.Defence   
-                if Damage_Calc < 0:
-                    Damage_Calc = 0
-                if Damage_Calc == 0:
-                    Timed_Text(f"{ChosenAlly.Name} mitigates the damage!",0.03,True,True)
-                else:
-                    Timed_Text(f"{self.Name} Attacks {ChosenAlly.Name} for -{Damage_Calc} damage!",0.03,True,True)
-                    ChosenAlly.Take_Damage(Damage_Calc)
-            
