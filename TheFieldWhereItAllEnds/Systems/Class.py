@@ -1,7 +1,6 @@
 from Systems.Functions import Timed_Text
 from Systems.Functions import Choose_Enemy
 def ClassDescript(Self):
-       
         ClassType = " "
         if Self.Class == 1:
             ClassType = "Mage"
@@ -9,21 +8,18 @@ def ClassDescript(Self):
             ClassType = "Warrior"
         if Self.Class == 3:
             ClassType = "Hunter"
-
         if ClassType == 11:
             ClassType = "Deduction Of Infinity"
         if ClassType == 12:
             ClassType = "Eternal Suffering"
         if ClassType == 13:
             ClassType = "Our Lord reincarnate"
-
         if ClassType == 21:
             ClassType = "To it’s Absolution"
         if ClassType == 22:
             ClassType = "Species of Annihilation"
         if ClassType == 23:
             ClassType = "Reprise of the void"
-
         if ClassType == 31:
             ClassType = "Dissonant Courage"
         if ClassType == 32:
@@ -33,77 +29,76 @@ def ClassDescript(Self):
         return ClassType
 
 def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
-    ClassType = ClassDescript(Self)
-    if ClassType == "Mage":
-        if AbilityType == 1:
-            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
-            Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
-            RandomNum = random.randint(1,100)
-            if Enemy_Choice.Dash <= 0:
-              if Enemy_Choice.Dodge >= RandomNum:
-            	  if Damage_Calc < 0:
-                       Damage_Calc = 0
-               	  Timed_Text("Damage Mitigated!",0.03,True,True) 
-            	  else:
-                 	  Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
-    f"Dealing -{Damage_Calc} Magic damage",0.03,True,True)
-            		  Enemy_Choice.Damage_Enemy(Damage_Calc)
-              else:
-                Timed_Text("Enemy Dodges!!",0.03,True,True)
-            else:
-              Enemy.Choice.Success_Dash()
-        if AbilityType == 2:
-            Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
-            Self.Dash += 1
-    if ClassType == "Warrior":
-        if AbilityType == 1:
-            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
-            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
-            RandomNum = random.randint(1,100)
-            if Enemy_Choice.Dash <= 0:
-              if Enemy_Choice.Dodge >= RandomNum:
-            	  if Damage_Calc < 0:
-                       Damage_Calc = 0
-               	  Timed_Text("Damage Mitigated!",0.03,True,True) 
-            	  else:
-                 	  Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
-                	  Enemy_Choice.Damage_Enemy(Damage_Calc)
-              else:
-                Timed_Text("Enemy Dodges!!",0.03,True,True)
-            else:
-              Enemy.Choice.Success_Dash()
-           
-        if AbilityType == 2:
-            Timed_Text(f"{Self.Name} raises their shield, preparing to block...",0.03,True,True)
-            Self.Defence += 2
-            Self.Applied_Status["WarriorAbility2"] = 0
-    if ClassType == "Hunter":
-       if AbilityType == 1:
-            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
-            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
-            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
-            RandomNum = random.randint(1,100)
-            if Enemy_Choice.Dash <= 0:
-              if Enemy_Choice.Dodge >= RandomNum:
-            	  if Damage_Calc < 0:
-                       Damage_Calc = 0
-               	  Timed_Text("Damage Mitigated!",0.03,True,True) 
-            	  else:
-                Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
-                Enemy_Choice.Damage_Enemy(Damage_Calc)
-              else:
-                Timed_Text("Enemy Dodges!!",0.03,True,True)
-            else:
-              Enemy.Choice.Success_Dash()
-       if AbilityType == 2:
-            Timed_Text(f"{Self.Name} feet become swiftly, dodge time..!",0.03,True,True)
-            Self.Dodge += 100
-            Self.Applied_Status["HunterAbility2"] = 0
-            
-        
+	ClassType = ClassDescript(Self)
+	if ClassType == "Mage":
+              if AbilityType == 1:
+                     Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+                     Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
+                     RandomNum = random.randint(1,100)
+                     if Enemy_Choice.Dash <= 0:
+                            if Enemy_Choice.Dodge >= RandomNum:
+                                   if Damage_Calc < 0:
+                                          Damage_Calc = 0
+                                          Timed_Text("Damage Mitigated!",0.03,True,True) 
+                                   else:
+                                          Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
+                                          f"Dealing -{Damage_Calc} Magic damage",0.03,True,True)
+                                          Enemy_Choice.Damage_Enemy(Damage_Calc)
+                            else:
+                                   Timed_Text("Enemy Dodges!!",0.03,True,True)
+                     else:
+                            Enemy.Choice.Success_Dash()
+              if AbilityType == 2:
+                     Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
+                     Self.Dash += 1
+       if ClassType == "Warrior":
+              if AbilityType == 1:
+                     Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+                     Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+                     RandomNum = random.randint(1,100)
+                     if Enemy_Choice.Dash <= 0:
+                            if Enemy_Choice.Dodge >= RandomNum:
+                                   if Damage_Calc < 0:
+                                          Damage_Calc = 0
+                                          Timed_Text("Damage Mitigated!",0.03,True,True) 
+                                   else:
+                                          Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+                                          Enemy_Choice.Damage_Enemy(Damage_Calc)
+                            else:
+                                   Timed_Text("Enemy Dodges!!",0.03,True,True)
+                     else:
+                            Enemy.Choice.Success_Dash()
+              if AbilityType == 2:
+                     Timed_Text(f"{Self.Name} raises their shield, preparing to block...",0.03,True,True)
+                     Self.Defence += 2
+                     Self.Applied_Status["WarriorAbility2"] = 0
+       if ClassType == "Hunter":
+              if AbilityType == 1:
+                     Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+                     Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+                     Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+                     RandomNum = random.randint(1,100)
+                     if Enemy_Choice.Dash <= 0:
+                            if Enemy_Choice.Dodge >= RandomNum:
+                                   if Damage_Calc < 0:
+                                          Damage_Calc = 0
+                                          Timed_Text("Damage Mitigated!",0.03,True,True) 
+                                   else:
+                                          Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+                                          Enemy_Choice.Damage_Enemy(Damage_Calc)
+                            else:
+                                   Timed_Text("Enemy Dodges!!",0.03,True,True)
+                     else:
+                            Enemy.Choice.Success_Dash()
+              if AbilityType == 2:
+                     Timed_Text(f"{Self.Name} feet become swiftly, dodge time..!",0.03,True,True)
+                     Self.Dodge += 100
+                     Self.Applied_Status["HunterAbility2"] = 0
+       if ClassType == "Deduction Of Infinity":
+              if AbilityType == 1:
+                     print("gonna add later x-p")
 
-            
-       
+
 def Class_Ability_Description(Self):
     ClassType = ClassDescript(Self)
     if ClassType == "Mage":
