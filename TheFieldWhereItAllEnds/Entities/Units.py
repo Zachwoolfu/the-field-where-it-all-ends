@@ -28,7 +28,12 @@ class Units:
             if Self.Applied_Status["WarriorAbility2"] == 0:
                 del Self.Applied_Status["WarriorAbility2"]
                 Self.Defence -= 2
-                
+        if "HunterAbility2" in Self.Applied_Status:
+            if Self.Applied_Status["HunterAbility2"] == 0:
+                del Self.Applied_Status["HunterAbility2"]
+                Self.Dodge -= 100
+            else:
+                Self.Applied_Status["HunterAbility2] = (Self.Applied_Status["HunterAbility2]-1) 
 
     def IsDied(self):
         if self.Health <= 0:
