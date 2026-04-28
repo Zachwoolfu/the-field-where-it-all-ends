@@ -21,6 +21,11 @@ class Enemy:
             self.Strength = 2
             self.MaxHealth = 3
             self.Health = 3
+            	
+    def Success_Dash(self):
+        self.Dash -= 1
+        Timed_Text("Missed damage!",0.03,True,True)
+
 
     def Heal_Enemy(self,amount):
         if self.MaxHealth > self.Health:
