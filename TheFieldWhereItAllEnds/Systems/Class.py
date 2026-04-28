@@ -39,8 +39,10 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
             Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
             if Damage_Calc < 0:
-                Damage_Calc = 0
-            Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
+               Damage_Calc = 0
+               Timed_Text("Damage Mitigated!",0.03,True,True) 
+            else:
+                 Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
     f"Dealing -{Damage_Calc} Magic damage",0.03,True,True)
             Enemy_Choice.Damage_Enemy(Damage_Calc)
         if AbilityType == 2:
@@ -51,21 +53,24 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
             Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
             if Damage_Calc < 0:
-                Damage_Calc = 0
-            Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
-            Enemy_Choice.Damage_Enemy(Damage_Calc)
+                Timed_Text("Damage Mitigated!",0.03,True,True) 
+            else:
+                Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+                Enemy_Choice.Damage_Enemy(Damage_Calc)
+           
         if AbilityType == 2:
             Timed_Text(f"{Self.Name} raises their shield, preparing to block...",0.03,True,True)
             Self.Defence += 2
             Self.Applied_Status["WarriorAbility2"] = 0
     if ClassType == "Hunter":
-        if AbilityType == 1:
+       if AbilityType == 1:
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
             Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
             if Damage_Calc < 0:
-                Damage_Calc = 0
-            Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
-            Enemy_Choice.Damage_Enemy(Damage_Calc)
+                Timed_Text("Damage Mitigated!",0.03,True,True) 
+            else:
+                Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+                Enemy_Choice.Damage_Enemy(Damage_Calc)
         if AbilityType == 2:
             Timed_Text(f"{Self.Name} feet become swiftly, dodge time..!",0.03,True,True)
             Self.Dodge += 100
