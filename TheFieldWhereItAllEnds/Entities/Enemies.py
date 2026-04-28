@@ -28,6 +28,12 @@ class Enemy:
             self.Health += amount
         else:
             Self.Health = Self.MaxHealth
+                
+    def Success_Dash(self):
+        self.Dash -= 1
+        Timed_Text("Missed damage!",0.03,True,True)
+
+
     def Damage_Enemy(self, amount):
         if Self.MaxHealth > Self.Health:
             self.Health -= amount
