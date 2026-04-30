@@ -7,6 +7,8 @@ class Enemy:
         self.Name = "Enemy"
         self.Strength = 1
         self.MaxHealth = 1
+        self.Dash = 1
+        self.Dodge = 10
         self.Stamina = 1
         self.Health = 1 ## Howmuch units have fallen!
         self.Magic_Defense = 0 ## - 1
