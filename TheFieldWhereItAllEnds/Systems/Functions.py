@@ -53,8 +53,6 @@ def Initiate_Fight(Local_Player,Ally1,Ally2,Ally3,Ally4,Enemy1,Enemy2,Enemy3):
         if Local_Player.IsDied() == True:
             return False 
     
-        
-        
         if Ally1 is not None:
             Ally1.Status_Ending()
             if Ally1.IsDied() == True:
