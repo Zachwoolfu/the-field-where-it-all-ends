@@ -17,23 +17,21 @@ class Units:
         self.Class = Class
         self.Equipement = 0
         self.Applied_Status = {}
-
+        self.Class_Passive()
+        
     def ClassDescript(Self):
         x = ClassDescript(Self)
         return x
-    
+
+    def Class_Passive(Self):
+        Class = ClassDescript(Self)
+        if Class == "Hunter":
+            Self.Dodge += 25    
     def Status_Ending(Self):
         if "WarriorAbility2" in Self.Applied_Status:
             if Self.Applied_Status["WarriorAbility2"] == 0:
                 del Self.Applied_Status["WarriorAbility2"]
                 Self.Defence -= 2
-        if "HunterAbility2" in Self.Applied_Status:
-            if Self.Applied_Status["HunterAbility2"] == 0:
-                del Self.Applied_Status["HunterAbility2"]
-                Self.Dodge -= 100
-            else:
-                Self.Applied_Status["HunterAbility2] = (Self.Applied_Status["HunterAbility2]-1) 
-
     def IsDied(self):
         if self.Health <= 0:
             return True
@@ -48,7 +46,7 @@ class Units:
 
     def Action(Self,Enemy1,Enemy2,Enemy3):
        
-    	Timed_Text("Select an action!",0.03,True,False)
+        Timed_Text("Select an action!",0.03,True,False)
         print(Self.Name," ", end="")
         print("(",ClassDescript(Self),")",sep="")
         ChoseAbility = Class_Ability_Description(Self)
