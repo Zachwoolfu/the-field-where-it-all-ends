@@ -33,11 +33,12 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
     ClassType = ClassDescript(Self)
     if ClassType == "Mage":
         if AbilityType == 1:
+            Self.Stamina -= 1
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
             Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
             RandomNum = random.randint(1,100)
             if Enemy_Choice.Dash <= 0:
-                if Enemy_Choice.Dodge >= RandomNum:
+                if Enemy_Choice.Dodge <= RandomNum:
                     if Damage_Calc < 0:
                         Damage_Calc = 0
                         Timed_Text("Damage Mitigated!",0.03,True,True) 
@@ -50,15 +51,17 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
             else:
                 Enemy_Choice.Success_Dash()
         if AbilityType == 2:
+            Self.Stamina -= 1
             Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
             Self.Dash += 1
     if ClassType == "Warrior":
         if AbilityType == 1:
+            Self.Stamina -= 1
             Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
             Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
             RandomNum = random.randint(1,100)
             if Enemy_Choice.Dash <= 0:
-                if Enemy_Choice.Dodge >= RandomNum:
+                if Enemy_Choice.Dodge <= RandomNum:
                     if Damage_Calc < 0:
                         Damage_Calc = 0
                         Timed_Text("Damage Mitigated!",0.03,True,True) 
@@ -70,17 +73,23 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
             else:
                 Enemy_Choice.Success_Dash()
         if AbilityType == 2:
-            Timed_Text(f"{Self.Name} raises their shield, preparing to block...",0.03,True,True)
-            Self.Defence += 2
-            Self.Applied_Status["WarriorAbility2"] = 0
+            Self.Stamina -= 1
+            Timed_Text(f"{Self.Name} raises their shield!",0.03,True,True)
+            if "WarriorAbility2" in Self.Applied_Status:
+                Timed_Text(f"Block duration Refreshed!",0.03,True,True)
+                Self.Applied_Status["WarriorAbility2"] = 1
+            else:
+                Self.Defence += 2
+                Self.Applied_Status["WarriorAbility2"] = 1
         if ClassType == "Hunter":
             if AbilityType == 1:
+                Self.Stamina -= 1
                 Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
                 Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
                 Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
                 RandomNum = random.randint(1,100)
                 if Enemy_Choice.Dash <= 0:
-                    if Enemy_Choice.Dodge >= RandomNum:
+                    if Enemy_Choice.Dodge <= RandomNum:
                         if Damage_Calc < 0:
                             Damage_Calc = 0
                             Timed_Text("Damage Mitigated!",0.03,True,True) 
@@ -99,52 +108,64 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
 def Class_Ability_Description(Self):
     ClassType = ClassDescript(Self)
     if ClassType == "Mage":
-        print("1: Magic Missile: Deal 1 Magic damage to a target")
+        print(f"1: Magic Missile: Deal {Self.Strength} Magic damage to a target")
         print("2: Warp: Teleport instantly to dodge the next damage taken.")
+        if Self.Dash > 0:
+            print(f"Active Warps: {Self.Dash}")
+
     if ClassType == "Warrior":
-        print("1: Slash: Deal 1 Physical Damage to a single target")
-        print("2: Block: Gain - 2 damage reduction for this round")      
+        print(f"1: Slash: Deal {Self.Strength} Physical Damage to a single target")
+        print("2: Block: Gain -2 damage reduction for 2 rounds")      
+        if "WarriorAbility2" in Self.Applied_Status:
+            print("Active Buff: Has +2 defence")
     if ClassType == "Hunter":
-        print("1: Slash: Deal 1 Physical Damage to as single target")      
+        print(f"1: Slash: Deal {Self.Strength} Physical Damage to a single target")      
+        print("Passively gain 25% Dodge Chance")
     if ClassType == "Deduction Of Infinity":
         print("1: Addition: Summon an addition sign. After a round it will activate and home towards the Targeted enemy")
         print("2: Multiply: [Integer] Stacks on enemies by x2")
-        print("3: Subtraction: Consume an [Integer] stack on a singe target to deal 2 magic damage")
-        print("4: Division: Consume 1/2 [Integer] stack on a singe target to deal 1 damage multiply by stack number")
+        print(f"3: Subtraction: Consume an [Integer] stack on a single target to deal {Self.Strength} magic damage")
+        print(f"4: Division: Consume 1/2 [Integer] stack on a single target to deal {Self.Strength} damage multiplied by stack number")
+
     if ClassType == "Eternal Suffering":
-        print("1: Earth's torment: Erupts a vulcano, creating a magma zone, dealing 1 magic damage to enemies for 3 rounds")
-        print("2: Suffication: Inflice a burn to a single target, deducing their Magic resistence by 1/2")
+        print(f"1: Earth's torment: Creates a magma zone dealing {Self.Strength} magic damage for 3 rounds")
+        print(f"2: Suffocation: Inflict a burn, reducing Magic resistance by {Self.Strength}/2")
+
     if ClassType == "Our Lord reincarnate":
-        print("1: Plague's eternal Cure: Cleans you and all allies in your team of all negative effects")
-        print("2: God's left hand: Drop down gods had to deal 1 magic damage to all enemies in the field")
+        print("1: Plague's eternal Cure: Cleanse all allies of negative effects")
+        print(f"2: God's left hand: Deal {Self.Strength} magic damage to all enemies")
 
     if ClassType == "To it’s Absolution":
-        print("1: Aggression: Grant yourself 75% damage mitigation for this round. Damage taken will increase your next damage to increase.")
-        print("2: Annoyance: Force all enemies to focus you for 1 round")
-        print("3: Clean cut: Bring out your blae, and slice, dealing 1 Physical damage to all enemies in the field")
-    if ClassType == "Species of Annihilation": 
-        print("1: Blood draw: Deduce your current health to increase you physical damage by +1")
-        print("2: Eradicate: Deal damage to all enemies")
-        print("3: Chains of Dissoance: Deal damage to a single enemy, marking them with [execution] for 5 rounds, if the stack detects them at less then 2 hp, They are executed and you are healed.")
-    if ClassType == "Reprise of the void":
-        print("1: Vibration: Deal 1 physical damage to a singe target, silencing them from using an ability this round.")
-        print("2: Dissociate: Turn invisible for 3 rounds, becoming immune to all damage. Actions will exit invisibility")
-        print("3: nil: Silence all enemies from casting and attacking, deducing their defences by 1/2, lasting for 3 rounds")
-    if ClassType == "Dissonant Courage":
-        print("1: Courage: Increase you and all allie's damage by +1")
-        print("2: Arrow of recursion: Deal 3 physical damage to a single target, each round it will deal damage again, dealing -1 less for each damage dealt")
-        print("3: Redo: Refresh an allies cooldown")
-    if ClassType == "The Holy unjust":
-        print("1: Holy lyre: Dealing 1 magic damage to all enemies, reducing their physical defences by 1/4")
-        print("2: Wings of protection: Grant you or an ally a shied scaling off of your 1/4 max health")
-        print("3: Warm embrace: Heal an ally 1+ hp")
-    if ClassType == "Unwritten melodies":
-        print("1: Wishing Star: Deal 1 magic damage to a single target.")
-        print("2: Constellation: Forge a random of 1-4 stars to spiral around you, Casting {Wishing Star} will fire all stars the target, dealing 1+ damage each star")
-        print("3: Eyes of the Galaxy: Refresh wishing Star Cool-Down")
+        print("1: Aggression: Gain 75% damage mitigation this round. Damage taken increases your next attack")
+        print("2: Annoyance: Force all enemies to target you for 1 round")
+        print(f"3: Clean cut: Deal {Self.Strength} Physical damage to all enemies")
 
-    print("Input:",end="")
-    Given_Input = 0
+    if ClassType == "Species of Annihilation": 
+        print(f"1: Blood draw: Lose HP to increase physical damage by +{Self.Strength}")
+        print(f"2: Eradicate: Deal {Self.Strength} damage to all enemies")
+        print(f"3: Chains of Dissonance: Deal {Self.Strength} damage and apply execution mark")
+
+    if ClassType == "Reprise of the void":
+        print(f"1: Vibration: Deal {Self.Strength} physical damage and silence target")
+        print("2: Dissociate: Turn invisible for 3 rounds (immune until action)")
+        print(f"3: nil: Silence all enemies and reduce defenses by {Self.Strength}/2 for 3 rounds")
+
+    if ClassType == "Dissonant Courage":
+        print(f"1: Courage: Increase all allies damage by +{Self.Strength}")
+        print(f"2: Arrow of recursion: Start at {Self.Strength} damage, decreasing each round")
+        print("3: Redo: Refresh an ally's cooldown")
+
+    if ClassType == "The Holy unjust":
+        print(f"1: Holy lyre: Deal {Self.Strength} magic damage to all enemies")
+        print(f"2: Wings of protection: Shield scales with {Self.Strength}")
+        print(f"3: Warm embrace: Heal an ally for {Self.Strength}+ HP")
+
+    if ClassType == "Unwritten melodies":
+        print(f"1: Wishing Star: Deal {Self.Strength} magic damage to a target")
+        print("2: Constellation: Generate stars that enhance Wishing Star")
+        print("3: Eyes of the Galaxy: Refresh Wishing Star cooldown")
+        print("Input:",end="")
+        Given_Input = 0
     while True:
         try:
             Given_Input = int(input(" "))
