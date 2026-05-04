@@ -14,12 +14,12 @@ class Enemy:
         self.Magic_Defense = 0 ## - 1
         self.Physical_Defense = 0 ## - 1
         if Type == 1:
-            self.Name = "Enemy1"
+            self.Name = "LemonGrass"
             self.Strength = 1
             self.MaxHealth = 2
             self.Health = 2
         elif Type == 2:
-            self.Name = "Enemy2"
+            self.Name = "ScaryLarry"
             self.Strength = 2
             self.MaxHealth = 3
             self.Health = 3
