@@ -5,13 +5,14 @@ from Systems.Class import Class_Ability_Cast
 class Units:
     def __init__(self,Name,Class):
         self.Name = Name
-        self.MaxHealth = 5
-        self.Health = 5
-        self.Strength = 1
+        self.MaxHealth = 10
+        self.Health = 10
+        self.Strength = 2
         self.Defence = 0 ## -0
         self.Dodge = 10 ### 0%
-        self.Dash = 0 ### 1 = if hit once it will dodge!.
-        self.Distance = 3 ## ON ACTION!
+        self.Dash = 1 ### 1 = if hit once it will dodge!.
+        self.MaxStamina = 2 ## MAX!! wowww
+        self.Stamina = 2## HowMAny Actions can be done!
         self.Relationship_Status = 1  
         self.Relationshp_Level = 1
         self.Class = Class
@@ -26,12 +27,16 @@ class Units:
     def Class_Passive(Self):
         Class = ClassDescript(Self)
         if Class == "Hunter":
-            Self.Dodge += 25    
+            Self.Dodge += 25  
+            Self.MaxStamina = 3
+            Self.Stamina = 3  
     def Status_Ending(Self):
         if "WarriorAbility2" in Self.Applied_Status:
             if Self.Applied_Status["WarriorAbility2"] == 0:
                 del Self.Applied_Status["WarriorAbility2"]
                 Self.Defence -= 2
+            else:
+                Self.Applied_Status["WarriorAbility2"] -= 1
     def IsDied(self):
         if self.Health <= 0:
             return True
