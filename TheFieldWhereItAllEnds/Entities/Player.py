@@ -4,8 +4,8 @@ from Systems.Functions import System_Clear
 class Player:
     def __init__(self, name):
         self.name = name
-        self.MaxHealth = 1
-        self.Health = 1 ## Howmuch units have fallen!
+        self.MaxHealth = 4
+        self.Health = 4 ## Howmuch units have fallen!
 
     def Damage_Player(self, amount):
         self.Health -= amount
@@ -20,19 +20,20 @@ class Player:
         while True:
             try:
                 Timed_Text("Select A unit! (Or type '5' to finish) ",0.03,True,False)
+                print(f"{self.name} Unit(s):")
                 Allies = [Ally1, Ally2, Ally3, Ally4]
 
                 for ally in Allies:
                     if ally is not None:
                         count += 1
-                        print(f"{count}: {ally.Name} | HP: {ally.Health} | {ally.ClassDescript()}")
+                        print(f"{count}: {ally.Name} | HP: {ally.Health} | {ally.ClassDescript()} | Stamina: {ally.Stamina}")
              
                 print("Input: ",end="")
                 Given_Input = int(input(" "))
                 if 0 < Given_Input <= count:
                     return Given_Input
                 elif Given_Input == 5:
-                    return "end"
+                    return 5
                 else:
                     Timed_Text("Selection invalid, please inpute an available number! ",0.03,True,True)
             except ValueError:
