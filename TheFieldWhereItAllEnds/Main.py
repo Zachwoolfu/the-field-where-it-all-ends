@@ -45,9 +45,36 @@ def Starting_Dialogue():
             print("1: Mage")
             print("2: Warrior")
             print("3: Hunter")
-            
-            Given_Class = int(input(" "))
+            Given_Class = 1
+            while True:
+                Given_Class = int(input(" "))
+                if Given_Class > 0 and Given_Class < 4:
+                    break
+                else:
+                    Timed_Text('PLEASE PUT A VALID NUMBER!!!!',0.03,False,False)
+                
             Ally1 = Units(Given_Name,Given_Class)
+            break
+        except:
+            print("please place in a valid name.") 
+
+    while True:
+        try:
+            Timed_Text('Input Ally2 Name:',0.03,False,False)
+            Given_Name = input(" ")
+            System_Clear()
+            print("1: Mage")
+            print("2: Warrior")
+            print("3: Hunter")
+            Given_Class = 1
+            while True:
+                Given_Class = int(input(" "))
+                if Given_Class > 0 and Given_Class < 4:
+                    break
+                else:
+                    Timed_Text('PLEASE PUT A VALID NUMBER!!!!',0.03,False,False)
+                
+            Ally2 = Units(Given_Name,Given_Class)
             break
         except:
             print("please place in a valid name.") 
