@@ -13,6 +13,16 @@ class Enemy:
         self.Health = 1 ## Howmuch units have fallen!
         self.Magic_Defense = 0 ## - 1
         self.Physical_Defense = 0 ## - 1
+        self.Applied_Status = {}
+        
+        #def Status_Ending(Self):
+        #if "WarriorAbility2" in Self.Applied_Status:
+        #    if Self.Applied_Status["WarriorAbility2"] == 0:
+        #        del Self.Applied_Status["WarriorAbility2"]
+        #        Self.Defence -= 2
+        #    else:
+        #        Self.Applied_Status["WarriorAbility2"] -= 1
+    
         if Type == 1:
             self.Name = "LemonGrass"
             self.Strength = 1
