@@ -102,7 +102,20 @@ def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
                     Enemy_Choice.Success_Dash()
         if ClassType == "Deduction Of Infinity":
             if AbilityType == 1:
-                print("gonna add later x-p")
+               Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+               Enemy_Choice.Applied_Status["Deduction_Of_Infinity_Addition"] += 1
+               if Enemy_Choice.Dash <= 0:
+                    if Enemy_Choice.Dodge <= RandomNum:
+                        if Damage_Calc < 0:
+                            Damage_Calc = 0
+                            Timed_Text("Damage Mitigated!",0.03,True,True) 
+                        else:
+                            Timed_Text(f"{Self.Name} fires a  at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+                            Enemy_Choice.Damage_Enemy(Damage_Calc)
+                    else:
+                        Timed_Text("Enemy Dodges!!",0.03,True,True)
+                else:
+                    Enemy_Choice.Success_Dash()
 
 
 def Class_Ability_Description(Self):
@@ -121,8 +134,9 @@ def Class_Ability_Description(Self):
     if ClassType == "Hunter":
         print(f"1: Slash: Deal {Self.Strength} Physical Damage to a single target")      
         print("Passively gain 25% Dodge Chance")
+        
     if ClassType == "Deduction Of Infinity":
-        print("1: Addition: Summon an addition sign. After a round it will activate and home towards the Targeted enemy")
+        print(f"1: Addition: Summon an addition sign. dealing {Self.Strength} magic damage to a targeted enemy, applies a stack of Intiger.")
         print("2: Multiply: [Integer] Stacks on enemies by x2")
         print(f"3: Subtraction: Consume an [Integer] stack on a single target to deal {Self.Strength} magic damage")
         print(f"4: Division: Consume 1/2 [Integer] stack on a single target to deal {Self.Strength} damage multiplied by stack number")
