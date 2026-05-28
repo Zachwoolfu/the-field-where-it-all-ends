@@ -1,122 +1,738 @@
 from Systems.Functions import Timed_Text
 from Systems.Functions import Choose_Enemy
 import random
-def ClassDescript(Self):
-        ClassType = " "
-        if Self.Class == 1:
-            ClassType = "Mage"
-        if Self.Class == 2:
-            ClassType = "Warrior"
-        if Self.Class == 3:
-            ClassType = "Hunter"
-        if ClassType == 11:
-            ClassType = "Deduction Of Infinity"
-        if ClassType == 12:
-            ClassType = "Eternal Suffering"
-        if ClassType == 13:
-            ClassType = "Our Lord reincarnate"
-        if ClassType == 21:
-            ClassType = "To it’s Absolution"
-        if ClassType == 22:
-            ClassType = "Species of Annihilation"
-        if ClassType == 23:
-            ClassType = "Reprise of the void"
-        if ClassType == 31:
-            ClassType = "Dissonant Courage"
-        if ClassType == 32:
-            ClassType = "The Holy unjust"
-        if ClassType == 33:
-            ClassType = "Unwritten melodies"
-        return ClassType
+from Systems.Functions import Timed_Text
+from Systems.Functions import Choose_Enemy
+import random
 
-def Class_Ability_Cast(Self,AbilityType,Enemy1,Enemy2,Enemy3):
+
+def ClassDescript(Self):
+    ClassType = " "
+    if Self.Class == 1:
+        ClassType = "Mage"
+    if Self.Class == 2:
+        ClassType = "Warrior"
+    if Self.Class == 3:
+        ClassType = "Hunter"
+
+    if Self.Class == 11:
+        ClassType = "Deduction Of Infinity"
+    if Self.Class == 12:
+        ClassType = "Eternal Suffering"
+    if Self.Class == 13:
+        ClassType = "Our Lord reincarnate"
+
+    if Self.Class == 21:
+        ClassType = "To it’s Absolution"
+    if Self.Class == 22:
+        ClassType = "Species of Annihilation"
+    if Self.Class == 23:
+        ClassType = "Reprise of the void"
+
+    if Self.Class == 31:
+        ClassType = "Dissonant Courage"
+    if Self.Class == 32:
+        ClassType = "The Holy unjust"
+    if Self.Class == 33:
+        ClassType = "Unwritten melodies"
+
+    return ClassType
+
+
+def Class_Ability_Cast(Self, AbilityType, Enemy1, Enemy2, Enemy3):
+
+    Enemies = [Enemy1, Enemy2, Enemy3]
+    Enemies = [Enemy for Enemy in Enemies if Enemy != None]
+
     ClassType = ClassDescript(Self)
+
+    # =========================================================
+    # MAGE
+    # =========================================================
+
     if ClassType == "Mage":
+
         if AbilityType == 1:
             Self.Stamina -= 1
-            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
             Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
-            RandomNum = random.randint(1,100)
+            RandomNum = random.randint(1, 100)
+
             if Enemy_Choice.Dash <= 0:
+
                 if Enemy_Choice.Dodge <= RandomNum:
+
                     if Damage_Calc < 0:
                         Damage_Calc = 0
-                        Timed_Text("Damage Mitigated!",0.03,True,True) 
+                        Timed_Text("Damage Mitigated!", 0.03, True, True)
+
                     else:
-                        Timed_Text(f"{Self.Name} Fires a quick magic missile at {Enemy_Choice.Name} "
-                        f"Dealing -{Damage_Calc} Magic damage",0.03,True,True)
+                        Timed_Text(
+                            f"{Self.Name} Fires a quick magic missile at "
+                            f"{Enemy_Choice.Name} dealing "
+                            f"-{Damage_Calc} magic damage",
+                            0.03,
+                            True,
+                            True
+                        )
+
                         Enemy_Choice.Damage_Enemy(Damage_Calc)
+
                 else:
-                    Timed_Text("Enemy Dodges!!",0.03,True,True)
+                    Timed_Text("Enemy Dodges!!", 0.03, True, True)
+
             else:
                 Enemy_Choice.Success_Dash()
+
         if AbilityType == 2:
             Self.Stamina -= 1
-            Timed_Text(f"{Self.Name} magic tingles, preparing a warp...",0.03,True,True)
+
+            Timed_Text(
+                f"{Self.Name} magic tingles, preparing a warp...",
+                0.03,
+                True,
+                True
+            )
+
             Self.Dash += 1
+
+    # =========================================================
+    # WARRIOR
+    # =========================================================
+
     if ClassType == "Warrior":
+
         if AbilityType == 1:
+
             Self.Stamina -= 1
-            Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
             Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
-            RandomNum = random.randint(1,100)
+            RandomNum = random.randint(1, 100)
+
             if Enemy_Choice.Dash <= 0:
+
                 if Enemy_Choice.Dodge <= RandomNum:
+
                     if Damage_Calc < 0:
                         Damage_Calc = 0
-                        Timed_Text("Damage Mitigated!",0.03,True,True) 
+                        Timed_Text("Damage Mitigated!", 0.03, True, True)
+
                     else:
-                        Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
+                        Timed_Text(
+                            f"{Self.Name} Slashes at "
+                            f"{Enemy_Choice.Name} dealing "
+                            f"-{Damage_Calc} physical damage",
+                            0.03,
+                            True,
+                            True
+                        )
+
                         Enemy_Choice.Damage_Enemy(Damage_Calc)
+
                 else:
-                    Timed_Text("Enemy Dodges!!",0.03,True,True)
+                    Timed_Text("Enemy Dodges!!", 0.03, True, True)
+
             else:
                 Enemy_Choice.Success_Dash()
+
         if AbilityType == 2:
+
             Self.Stamina -= 1
-            Timed_Text(f"{Self.Name} raises their shield!",0.03,True,True)
+
+            Timed_Text(
+                f"{Self.Name} raises their shield!",
+                0.03,
+                True,
+                True
+            )
+
             if "WarriorAbility2" in Self.Applied_Status:
-                Timed_Text(f"Block duration Refreshed!",0.03,True,True)
+
+                Timed_Text(
+                    "Block duration refreshed!",
+                    0.03,
+                    True,
+                    True
+                )
+
                 Self.Applied_Status["WarriorAbility2"] = 1
+
             else:
                 Self.Defence += 2
                 Self.Applied_Status["WarriorAbility2"] = 1
-        if ClassType == "Hunter":
-            if AbilityType == 1:
-                Self.Stamina -= 1
-                Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
-                Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
-                Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
-                RandomNum = random.randint(1,100)
-                if Enemy_Choice.Dash <= 0:
-                    if Enemy_Choice.Dodge <= RandomNum:
-                        if Damage_Calc < 0:
-                            Damage_Calc = 0
-                            Timed_Text("Damage Mitigated!",0.03,True,True) 
-                        else:
-                            Timed_Text(f"{Self.Name} Slashes at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
-                            Enemy_Choice.Damage_Enemy(Damage_Calc)
-                    else:
-                        Timed_Text("Enemy Dodges!!",0.03,True,True)
-                else:
-                    Enemy_Choice.Success_Dash()
-        if ClassType == "Deduction Of Infinity":
-            if AbilityType == 1:
-               Enemy_Choice = Choose_Enemy(Enemy1,Enemy2,Enemy3)
-               Enemy_Choice.Applied_Status["Deduction_Of_Infinity_Addition"] += 1
-               if Enemy_Choice.Dash <= 0:
-                    if Enemy_Choice.Dodge <= RandomNum:
-                        if Damage_Calc < 0:
-                            Damage_Calc = 0
-                            Timed_Text("Damage Mitigated!",0.03,True,True) 
-                        else:
-                            Timed_Text(f"{Self.Name} fires a  at {Enemy_Choice.Name} Dealing -{Damage_Calc} Physical damage",0.03,True,True) 
-                            Enemy_Choice.Damage_Enemy(Damage_Calc)
-                    else:
-                        Timed_Text("Enemy Dodges!!",0.03,True,True)
-                else:
-                    Enemy_Choice.Success_Dash()
 
+    # =========================================================
+    # HUNTER
+    # =========================================================
+
+    if ClassType == "Hunter":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+            RandomNum = random.randint(1, 100)
+
+            if Enemy_Choice.Dash <= 0:
+
+                if Enemy_Choice.Dodge <= RandomNum:
+
+                    if Damage_Calc < 0:
+                        Damage_Calc = 0
+
+                        Timed_Text(
+                            "Damage Mitigated!",
+                            0.03,
+                            True,
+                            True
+                        )
+
+                    else:
+                        Timed_Text(
+                            f"{Self.Name} fires an arrow at "
+                            f"{Enemy_Choice.Name} dealing "
+                            f"-{Damage_Calc} physical damage",
+                            0.03,
+                            True,
+                            True
+                        )
+
+                        Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+                else:
+                    Timed_Text("Enemy Dodges!!", 0.03, True, True)
+
+            else:
+                Enemy_Choice.Success_Dash()
+
+    # =========================================================
+    # DEDUCTION OF INFINITY
+    # =========================================================
+
+    if ClassType == "Deduction Of Infinity":
+
+        # Addition
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            if "Integer" not in Enemy_Choice.Applied_Status:
+                Enemy_Choice.Applied_Status["Integer"] = 0
+
+            Enemy_Choice.Applied_Status["Integer"] += 1
+
+            Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
+
+            if Damage_Calc < 0:
+                Damage_Calc = 0
+
+            Timed_Text(
+                f"{Self.Name} summons an Addition sign on "
+                f"{Enemy_Choice.Name}!",
+                0.03,
+                True,
+                True
+            )
+
+            Timed_Text(
+                f"{Enemy_Choice.Name} gains an Integer stack!",
+                0.03,
+                True,
+                True
+            )
+
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+        # Multiply
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            if "Integer" in Enemy_Choice.Applied_Status:
+
+                Enemy_Choice.Applied_Status["Integer"] *= 2
+
+                Timed_Text(
+                    f"{Self.Name} multiplies "
+                    f"{Enemy_Choice.Name}'s Integer stacks!",
+                    0.03,
+                    True,
+                    True
+                )
+
+            else:
+                Timed_Text(
+                    "Target has no Integer stacks!",
+                    0.03,
+                    True,
+                    True
+                )
+
+        # Subtraction
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            if "Integer" in Enemy_Choice.Applied_Status:
+
+                if Enemy_Choice.Applied_Status["Integer"] > 0:
+
+                    Enemy_Choice.Applied_Status["Integer"] -= 1
+
+                    Damage_Calc = Self.Strength - Enemy_Choice.Magic_Defense
+
+                    if Damage_Calc < 0:
+                        Damage_Calc = 0
+
+                    Timed_Text(
+                        f"{Self.Name} consumes an Integer stack "
+                        f"from {Enemy_Choice.Name}!",
+                        0.03,
+                        True,
+                        True
+                    )
+
+                    Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+                else:
+                    Timed_Text(
+                        "No Integer stacks available!",
+                        0.03,
+                        True,
+                        True
+                    )
+
+        # Division
+        if AbilityType == 4:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            if "Integer" in Enemy_Choice.Applied_Status:
+
+                Stacks = Enemy_Choice.Applied_Status["Integer"]
+
+                if Stacks > 0:
+
+                    Consume = max(1, Stacks // 2)
+
+                    Enemy_Choice.Applied_Status["Integer"] -= Consume
+
+                    Damage_Calc = (
+                        Self.Strength * Consume
+                    ) - Enemy_Choice.Magic_Defense
+
+                    if Damage_Calc < 0:
+                        Damage_Calc = 0
+
+                    Timed_Text(
+                        f"{Self.Name} divides reality itself!",
+                        0.03,
+                        True,
+                        True
+                    )
+
+                    Timed_Text(
+                        f"{Enemy_Choice.Name} takes "
+                        f"-{Damage_Calc} damage!",
+                        0.03,
+                        True,
+                        True
+                    )
+
+                    Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+    # =========================================================
+    # ETERNAL SUFFERING
+    # =========================================================
+
+    if ClassType == "Eternal Suffering":
+
+        # Earth's torment
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            for Enemy in Enemies:
+
+                if "Magma" not in Enemy.Applied_Status:
+                    Enemy.Applied_Status["Magma"] = 3
+
+                Timed_Text(
+                    f"Magma erupts beneath {Enemy.Name}!",
+                    0.03,
+                    True,
+                    True
+                )
+
+        # Suffocation
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            Enemy_Choice.Magic_Defense -= int(Self.Strength / 2)
+
+            Timed_Text(
+                f"{Enemy_Choice.Name}'s magic resistance burns away!",
+                0.03,
+                True,
+                True
+            )
+
+    # =========================================================
+    # OUR LORD REINCARNATE
+    # =========================================================
+
+    if ClassType == "Our Lord reincarnate":
+
+        # Cleanse
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Self.Applied_Status.clear()
+
+            Timed_Text(
+                f"{Self.Name} cleanses all negative effects!",
+                0.03,
+                True,
+                True
+            )
+
+        # God's left hand
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            for Enemy in Enemies:
+
+                Damage_Calc = Self.Strength - Enemy.Magic_Defense
+
+                if Damage_Calc < 0:
+                    Damage_Calc = 0
+
+                Timed_Text(
+                    f"Holy light crashes into {Enemy.Name}!",
+                    0.03,
+                    True,
+                    True
+                )
+
+                Enemy.Damage_Enemy(Damage_Calc)
+
+    # =========================================================
+    # TO IT'S ABSOLUTION
+    # =========================================================
+
+    if ClassType == "To it’s Absolution":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Self.Applied_Status["Aggression"] = 1
+
+            Timed_Text(
+                f"{Self.Name} braces against all attacks!",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            Self.Applied_Status["Taunt"] = 1
+
+            Timed_Text(
+                f"All enemies are forced to target {Self.Name}!",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            for Enemy in Enemies:
+
+                Damage_Calc = Self.Strength - Enemy.Physical_Defense
+
+                if Damage_Calc < 0:
+                    Damage_Calc = 0
+
+                Enemy.Damage_Enemy(Damage_Calc)
+
+                Timed_Text(
+                    f"{Self.Name} cuts through {Enemy.Name}!",
+                    0.03,
+                    True,
+                    True
+                )
+
+    # =========================================================
+    # SPECIES OF ANNIHILATION
+    # =========================================================
+
+    if ClassType == "Species of Annihilation":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Self.Health -= 10
+            Self.Strength += Self.Strength
+
+            Timed_Text(
+                f"{Self.Name} sacrifices health for power!",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            for Enemy in Enemies:
+
+                Damage_Calc = Self.Strength - Enemy.Physical_Defense
+
+                if Damage_Calc < 0:
+                    Damage_Calc = 0
+
+                Enemy.Damage_Enemy(Damage_Calc)
+
+                Timed_Text(
+                    f"{Enemy.Name} is eradicated for "
+                    f"-{Damage_Calc} damage!",
+                    0.03,
+                    True,
+                    True
+                )
+
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            Enemy_Choice.Applied_Status["Execution"] = 1
+
+            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+
+            if Damage_Calc < 0:
+                Damage_Calc = 0
+
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+    # =========================================================
+    # REPRISE OF THE VOID
+    # =========================================================
+
+    if ClassType == "Reprise of the void":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            Enemy_Choice.Applied_Status["Silence"] = 1
+
+            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+
+            if Damage_Calc < 0:
+                Damage_Calc = 0
+
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            Self.Applied_Status["Invisible"] = 3
+
+            Timed_Text(
+                f"{Self.Name} fades into the void...",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            for Enemy in Enemies:
+
+                Enemy.Applied_Status["Silence"] = 3
+                Enemy.Defence -= int(Self.Strength / 2)
+
+    # =========================================================
+    # DISSONANT COURAGE
+    # =========================================================
+
+    if ClassType == "Dissonant Courage":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Self.Applied_Status["TeamDamageBuff"] = Self.Strength
+
+            Timed_Text(
+                f"{Self.Name} inspires the entire team!",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            Damage_Calc = Self.Strength - Enemy_Choice.Physical_Defense
+
+            if Damage_Calc < 0:
+                Damage_Calc = 0
+
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            Timed_Text(
+                "An ally's cooldowns are refreshed!",
+                0.03,
+                True,
+                True
+            )
+
+    # =========================================================
+    # THE HOLY UNJUST
+    # =========================================================
+
+    if ClassType == "The Holy unjust":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            for Enemy in Enemies:
+
+                Damage_Calc = Self.Strength - Enemy.Magic_Defense
+
+                if Damage_Calc < 0:
+                    Damage_Calc = 0
+
+                Enemy.Damage_Enemy(Damage_Calc)
+
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            Self.Applied_Status["Shield"] = Self.Strength
+
+            Timed_Text(
+                f"{Self.Name} spreads divine protection!",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            Self.Health += Self.Strength
+
+            Timed_Text(
+                f"{Self.Name} is healed for "
+                f"{Self.Strength} HP!",
+                0.03,
+                True,
+                True
+            )
+
+    # =========================================================
+    # UNWRITTEN MELODIES
+    # =========================================================
+
+    if ClassType == "Unwritten melodies":
+
+        if AbilityType == 1:
+
+            Self.Stamina -= 1
+
+            Enemy_Choice = Choose_Enemy(Enemy1, Enemy2, Enemy3)
+
+            Bonus = Self.Applied_Status.get("Stars", 0)
+
+            Damage_Calc = (
+                Self.Strength + Bonus
+            ) - Enemy_Choice.Magic_Defense
+
+            if Damage_Calc < 0:
+                Damage_Calc = 0
+
+            Enemy_Choice.Damage_Enemy(Damage_Calc)
+
+            Timed_Text(
+                f"A wishing star crashes into "
+                f"{Enemy_Choice.Name}!",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 2:
+
+            Self.Stamina -= 1
+
+            if "Stars" not in Self.Applied_Status:
+                Self.Applied_Status["Stars"] = 0
+
+            Self.Applied_Status["Stars"] += Self.Strength
+
+            Timed_Text(
+                f"Stars gather around {Self.Name}...",
+                0.03,
+                True,
+                True
+            )
+
+        if AbilityType == 3:
+
+            Self.Stamina -= 1
+
+            Timed_Text(
+                "Wishing Star cooldown refreshed!",
+                0.03,
+                True,
+                True
+            )
 
 def Class_Ability_Description(Self):
     ClassType = ClassDescript(Self)
