@@ -47,7 +47,7 @@ def Class_Ability_Cast(Self, AbilityType, Enemy1, Enemy2, Enemy3):
     ClassType = ClassDescript(Self)
 
     # =========================================================
-    # MAGE
+    #           MAGE: magic 
     # =========================================================
 
     if ClassType == "Mage":
@@ -213,7 +213,7 @@ def Class_Ability_Cast(Self, AbilityType, Enemy1, Enemy2, Enemy3):
                 Enemy_Choice.Success_Dash()
 
     # =========================================================
-    # DEDUCTION OF INFINITY
+    # DEDUCTION OF INFINITY #FROM MAGE
     # =========================================================
 
     if ClassType == "Deduction Of Infinity":
@@ -357,7 +357,7 @@ def Class_Ability_Cast(Self, AbilityType, Enemy1, Enemy2, Enemy3):
                     Enemy_Choice.Damage_Enemy(Damage_Calc)
 
     # =========================================================
-    # ETERNAL SUFFERING
+    # ETERNAL SUFFERING : MAGE SUBCLASS
     # =========================================================
 
     if ClassType == "Eternal Suffering":
@@ -396,7 +396,7 @@ def Class_Ability_Cast(Self, AbilityType, Enemy1, Enemy2, Enemy3):
             )
 
     # =========================================================
-    # OUR LORD REINCARNATE
+    # OUR LORD REINCARNATE. # MAG SUBCLASS
     # =========================================================
 
     if ClassType == "Our Lord reincarnate":
